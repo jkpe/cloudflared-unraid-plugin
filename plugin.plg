@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PLUGIN>
+  <NAME>Cloudflared Tunnel</NAME>
+  <AUTHOR>Jack Pearce</AUTHOR>
+  <VERSION>2024.11.1</VERSION>
+  <CATEGORY>Network</CATEGORY>
+  <DESCRIPTION>Create and manage a Cloudflare Tunnel using cloudflared.</DESCRIPTION>
+  <CHANGES>
+    <CHANGE>Initial release</CHANGE>
+  </CHANGES>
+  <INSTALL>
+    <FILE>
+      <URL>https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64</URL>
+      <TARGET>/usr/local/bin/cloudflared</TARGET>
+      <MODE>0755</MODE>
+    </FILE>
+    <SCRIPT>
+      <INLINE>
+        #!/bin/bash
+        # Ensure cloudflared binary is executable
+        chmod +x /usr/local/bin/cloudflared
+      </INLINE>
+    </SCRIPT>
+  </INSTALL>
+  <UNINSTALL>
+    <INLINE>
+      #!/bin/bash
+      # Clean up cloudflared binary and configurations
+      rm -f /usr/local/bin/cloudflared
+      rm -rf /boot/config/plugins/cloudflared
+    </INLINE>
+  </UNINSTALL>
+</PLUGIN>
